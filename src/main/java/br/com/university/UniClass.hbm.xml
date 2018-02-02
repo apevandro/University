@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="br.com.university">
+    <class name="UniClass" table="CLASSES" mutable="false">
+    	<meta attribute="class-description">
+    		Ternary mapping.
+    		Table with additional columns as intermediate entity class.
+    	</meta>
+    	<composite-id name="id" class="UniClass$Id">
+    	    <key-property name="studentId" column="StudentId" access="field"/>
+    		<key-property name="discId" column="DiscId" access="field"/>
+    		<key-property name="profId" column="ProfId" access="field"/>
+    		<key-property name="semester" column="Semester" access="field"/>
+    	</composite-id>
+    	<property name="grade" column="Grade" type="double" not-null="true" />
+    </class>
+</hibernate-mapping>

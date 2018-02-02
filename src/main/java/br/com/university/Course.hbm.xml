@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="br.com.university">
+    <class name="Course" table="COURSES">
+        <meta attribute="class-description">
+            Course-Discipline bidirectional many-to-many association. Join table mapping strategy.
+            Course-Student bidirectional one-to-many association. Additional column strategy.
+        </meta>
+        <id name="courseId" column="CourseId" type="int" access="field"/>
+        <property name="name" column="Name" type="string"/>
+        <property name="totalCredits" column="TotalCredits" type="int"/>
+        <set name="students" cascade="save-update" inverse="true">
+            <key column="CourseId"/>
+            <one-to-many class="Student"/>
+        </set>
+        <set name="disciplines" table="DISC_COURSE" cascade="save-update">
+            <key column="CourseId"/>
+            <many-to-many column="DiscId" class="Discipline"/>
+        </set>
+    </class>
+</hibernate-mapping>
